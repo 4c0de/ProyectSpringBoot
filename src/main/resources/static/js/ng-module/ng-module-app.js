@@ -25,15 +25,21 @@ app.config(['$routeProvider', '$locationProvider',
       controller: 'ng-app-controller-about'
     })
     
-     .when('/buscador',
+    .when('/buscador',
     {
       templateUrl: GBL_COFG.urlTemplate('buscador.html'),
       controller: 'ng-app-controller-buscador'
     })
-      .when('/insertar',
+    .when('/insertar',
     {
       templateUrl: GBL_COFG.urlTemplate('insertar.html'),
       controller: 'ng-app-controller-insertar'
+    })
+    .when('/editar',
+    {
+      templateUrl: GBL_COFG.urlTemplate('insertar.html'),
+      controller: 'ng-app-controller-editar'
+     
     })
     .when('/kirby',
     {

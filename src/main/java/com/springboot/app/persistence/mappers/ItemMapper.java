@@ -5,6 +5,8 @@ package com.springboot.app.persistence.mappers;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.RequestBody;
+
 import com.springboot.app.persistence.models.ItemModel;
 import com.springboot.app.persistence.models.PesoItems;
 
@@ -45,6 +47,8 @@ public interface ItemMapper {
     public void borrar(ItemModel objeto)throws Exception;
      
     public void insertar(ItemModel objeto) throws Exception;
+    
+    public List<ItemModel> editar(@RequestBody ItemModel objeto) throws Exception;
  
    
 

@@ -112,6 +112,17 @@ public class ItemMapperImpl implements ItemMapper
  
 
     }
+
+	@Override
+	public List<ItemModel> editar(ItemModel objeto) throws Exception {
+		
+		   String sql = "SELECT * FROM items where id = '"+objeto.getId()+"'";
+	    
+		 
+		
+		    
+		    return JdbcTemplate.query(sql, new BeanPropertyRowMapper(ItemModel.class));
+	}
  
     
    

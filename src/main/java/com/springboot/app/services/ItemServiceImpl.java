@@ -86,6 +86,13 @@ public class ItemServiceImpl implements ItemService {
     }
 
 
+	@Override
+	public List<ItemModel> editar(ItemModel objeto) throws Exception {
+		
+		return iMapper.editar(objeto);
+	}
+
+
 }
 
 

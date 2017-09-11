@@ -1,5 +1,5 @@
 app.controller('ng-app-controller-buscador',
-['$scope', '$http','$timeout', '$location', function ($scope, $http, $timeout, $location)
+['$scope', '$http','$timeout','$location','utilFactory', function ($scope, $http, $timeout, $location,utilFactory)
   {
     var tiempo =
     {
@@ -31,6 +31,16 @@ app.controller('ng-app-controller-buscador',
     $scope.add = function()
     {
       $location.path("/insertar");
+ 
+    };
+    
+    //funcion para editar elementos
+    $scope.editar = function(id)
+    {
+    
+      utilFactory.setId(id);
+      
+      $location.path("/editar");
  
     };
     

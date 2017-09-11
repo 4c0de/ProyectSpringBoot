@@ -90,8 +90,8 @@ public class Item {
   }
   
   
-     //mapeamos borrar
-   @ResponseBody
+  //mapeamos insertar
+  @ResponseBody
   @RequestMapping(value = "/insertar",
                   method = RequestMethod.POST,
                   produces = MediaType.APPLICATION_JSON_VALUE)
@@ -101,6 +101,24 @@ public class Item {
 
     iService.insertar(objeto);     
   }
+  
+  
+  //mapeamos editar
+  @ResponseBody
+  @RequestMapping(value = "/editar",
+                  method = RequestMethod.POST,
+                  produces = MediaType.APPLICATION_JSON_VALUE)
+  
+  public List<ItemModel> editar(@RequestBody ItemModel objeto) throws Exception
+  {
+
+    return iService.editar(objeto);     
+  }
+
+  
+  
+  
+  
 
 
 }
