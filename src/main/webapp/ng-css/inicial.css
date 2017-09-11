@@ -1,0 +1,12 @@
+
+/*imagen que se carga al entrar al index*/
+ #imagen{
+  float: left;
+  width: 100%;
+  min-height: 100vh;
+  background-image: url('../ng-img/tux.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 50% 50%;
+}
+

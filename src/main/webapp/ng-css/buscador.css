@@ -1,0 +1,118 @@
+
+/*Div que envuelve el input, resultado y lupa*/
+#principal{
+    position: relative;
+   top: 70px;
+}
+
+#principal #campobuscar{
+    width: 52%;
+    background:#D8D8D8;
+    
+    
+  
+}
+
+ #principal  .contador{
+     position: absolute;
+     width: 20px;
+     height: 20px;
+     text-align: center;
+     border-radius: 50%;
+     right:25%;
+     top:22%;
+    
+  
+    }
+    
+    
+  #principal  #resultado{
+        color: white;
+    }
+
+
+.container-fluid{
+    margin-top: 10%;
+    width: 75%;
+}
+
+#img{
+    width: 100px;
+    height: 100px;
+}
+#tabla{
+    
+  border: solid 1px #D8D8D8;
+
+  
+}
+
+#tabla #nombres > th {
+    
+   font-size: 20px;
+   font-weight: bold;
+
+}
+
+
+
+#campos > td {
+   font-size: 15px;
+   font-family: cursive;
+
+}
+
+/*Zoom imagen */
+.zoom{
+        /* Aumentamos la anchura y altura durante 1 segundos */
+        transition: width 1s, height 1s, transform 1s ease;
+   
+    }
+    .zoom:hover{
+        /* tranformamos el elemento al pasar el mouse por encima*/
+        transform : scale(2);
+    }    
+    /*para mostrar numero de elementos encontrados como un contador*/
+ 
+    
+    
+    /*LUPA*/
+    
+  .lupa {
+  position:absolute;    
+  width: 20px;
+  height: 20px;
+  top:0px;
+  border: 2px solid #6E6E6E;
+  border-radius: 50%;
+
+}
+
+.lupa:after {
+  position: absolute;
+  width: 80%;
+  height: 6px;
+  background-color: black;
+  display: block;
+  content: "";
+  top: 30%;
+  left: 30%;
+  
+  transform: rotate(45deg);
+  transform-origin: -2px 20px;
+  
+}
+
+.lupa:hover{
+    transform : scale(2);
+}
+
+/*FIN LUPA*/
+
+/*Buscador subrayado*/
+.marcado{
+    color:#81BEF7;
+    text-decoration: underline;
+  
+    
+}

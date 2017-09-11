@@ -1,0 +1,49 @@
+
+
+
+<div id="principal">    
+  <fieldset>
+      <input id="campobuscar" type="text" class="form-control center-block" ng-keyup="busqueda($event)" placeholder="Buscar"/>
+      <div class="contador">
+          <p id="resultado">{{resultado}}</p>
+           <div class="lupa"></div> 
+      </div>
+  </fieldset>
+    
+</div>
+
+<div class="container-fluid">	
+    <table id="tabla"  class="table table-hover">
+
+        <tr id="nombres">
+            <th>Nombre</th> 
+            <th>Categoría</th>
+            <th>Descripción</th>  
+            <th>Imagen</th>
+            <th>Opciones</th>
+                
+        </tr> 
+     
+        <tr id="campos" ng-repeat="element in items">
+            <td ng-bind-html="element.nombre"></td>
+            <td ng-bind-html="element.categoria"></td>
+            <td ng-bind-html="element.descripcion"></td>
+            <td>
+                <img class="zoom" id="img" ng-src="{{element.url}}"/>    
+            </td>
+            <td>
+                <div class="btn-toolbar pagination-center" >
+                        <button ng-click="add()"  class="btn-xs btn btn-info btn-block">Añadir</button>
+                        <button ng-click="editar()"  class="btn-xs btn btn-warning btn-block">Editar</button>
+                        <button ng-click="borrar(element.id)"  class="btn-xs btn btn-danger btn-block">Borrar</button>
+                </div>
+            </td>
+             
+        
+          
+    
+        </tr>
+    </table>
+</div>   
+    
+

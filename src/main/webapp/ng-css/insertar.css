@@ -1,0 +1,18 @@
+.form-group{
+    margin: 10% auto;
+    text-align: center;
+   
+}
+
+
+ #linuxgif{
+  margin: 0 auto;
+  width: 100%;
+  min-height: 70vh;
+  background-image: url('../ng-img/tux.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 30% 30%;
+}
+
+
