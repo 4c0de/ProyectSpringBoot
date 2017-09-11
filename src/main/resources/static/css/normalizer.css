@@ -1,9 +1,4 @@
-/******************************************************************************
- *
- * RESET
- *
- ******************************************************************************/
-
+/*INICIO*/
 *, *::before, *::after
 {
   margin:0;
@@ -14,40 +9,8 @@
   font-weight: inherit;
   font-style: inherit;
   box-sizing: border-box;
-  font-family: arial, sans-serif;
-  font-size: 0.875rem;
-  color: rgba(50, 50, 50, 1);
-}
-
-
-html, body
-{
-  width: 100%;
-  height: 100%;
-  background-color: rgba(253, 253, 253, 1);
-}
-
-:focus
-{
-  outline: 0;
-}
-
-a:link, a:active, a:visited, a:hover
-{
-  text-decoration: none;
-  font-weight: bold;
-}
-
-ol, ul, li
-{
-  list-style: none;
-  list-style-position: inside;
-}
-
-h1, h2, h3, h4, h5, h6, h1 *, h2 *, h3 *, h4 *, h5 *, h6 *
-{
-  font-weight: bold;
-  font-size: 1.2rem;
+  font-family: verdana;
+  
 }
 
 body::before
@@ -59,97 +22,89 @@ body::before
   left: 0;
   width: 20px;
   height: 20px;
-}
+    
 
+}
 
 body.appLoading::before
 {
   width: 100%;
   height: 100%;
   background-image: url('../img/loading.gif');
-  background-position: center center;
+  background-position:center right;
   background-repeat: no-repeat;
-  background-size: auto 80px;
+  background-size: auto 150px;
+}
+
+/*ESTRUCTURA*/
+
+/*menu lateral*/
+
+div#barra-lateral{
+position:fixed;
+width:65px;
+height:100%;
+background-color:#6E6E6E;
+overflow:hidden;
+-webkit-transition:width 0.5s cubic-bezier(.61,.01,.37,1);
+       
+  
+}
+
+div#barra-lateral:hover{
+	width:170px;
+}
+
+div#logo-menu{
+    width:40px;
+    height:40px;
+    margin:10px;
+    background-image:url('../../ng-img/menu.png');
+}
+
+div#contenedor-logos-primero{
+    margin-top:70px;
+}
+
+div.contenedor-logos{
+    margin-top:20px;
+    margin-left:10px;
+    width:130px;
+    height:40px;
+	
+}
+
+div.logo{
+    width:40px;
+    height:40px;
+    background-image:url('../../ng-img/menu.png');
+    float: left;
+}
+
+p.title-menu{
+    margin-left:60px;
+    line-height: 40px;
+
 }
 
 
-/******************************************************************************
- *
- * STRUCTURE
- *
- ******************************************************************************/
-
-#header
+.enlace:link 
 {
-  position: fixed;
-  z-index: 9999;
-  top: 0;
-  left: 0;
-  width: 250px;
-  height: 100%;
-  padding-right: 20px;
-  transition: all 250ms ease-in-out;
-  transform: translateX(-230px);
-  box-shadow: 0 0 5px rgba(20, 20, 20, 1);
-  background-color: rgba(255, 255, 255, 1);
-  border-right: 1px solid rgba(255, 255, 255, 1);
+  text-decoration: none;
+  font-weight: bold;
 }
-
-
-#header:hover
-{
-  padding-right: 0;
-  transform: translateX(0);
-}
-
-#header ul
-{
-  float: left;
-  width: 100%;
-  height: auto;
-  overflow: hidden;
-}
-
-#header ul li
-{
-  float: left;
-  width: 100%;
-  height: auto;
-  padding: 15px 35px 15px 25px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-transform: uppercase;
-  border-bottom: 1px solid rgba(50, 50, 50, 0.15);
-}
-
-#header ul li:last-child
-{
-  border-bottom: 1px solid rgba(50, 50, 50, 0);
-}
-
-#wrapper, #wrapper > div
-{
-  float: left;
-  width: 100%;
-  min-height: 100vh;
-  overflow: hidden;
-}
-
-#wrapper
-{
-  padding-left: 20px; 
+.enlace{
+    color:#bcbcbc;
 }
 
 #footer
 {
   position: fixed;
-  z-index: 9999;
+
   top: 15px;
   right: 15px;
   width: 30px;
   height: 30px;
-  overflow: hidden;
   background-color: rgba(255, 255, 255, 1);
   box-shadow: inset 0 0 3px rgba(0, 0, 0, 1);
   border-radius: 100%;
