@@ -44,24 +44,54 @@ app.controller('ng-app-controller-buscador',
  
     };
     
-    //funcion borrar elemento
-    $scope.borrar = function(elemento)
+    
+    
+    
+    
+    /*
+     * FUNCION BORRAR
+     */
+    
+    
+     $scope.borrar = function()
     {
-      
-       $http.post('borrar',
-       {
-           id:elemento
-         })
+      //creacion del array 	 
+      var enviar=[];
+      var forms = document.forms;
+      //recorrer los elementos del formulario
+      for (var i = 0; i < forms.length; i++)
+      {
+    	 /*
+    	  * Si elemento checked es marcado se añade al array el valor del input.
+    	  * En este caso es el id. 
+    	  */
+		if (forms[i].checked.checked)
+			{
+			console.log("true");
+			//for (var i in items){
+				//console.log(items[i].id);
+			enviar.push({
+			id:forms[i].checked.value
+		    	
+			//}
+				
+		});
+		console.log(forms[i].checked.value);
+			
+			}
+	  }
+       //peticion post y array 
+       $http.post('borrar',enviar)
        .then(function ()
         {
           //cuando borramos para realizar una nueva petición post y mostrar la lista actualizada.  
           $http.post('listado',{})
-                .then(function(respuesta)
-                    {
-                      var data =respuesta.data;  
-                      //Mostrar items
-                      $scope.items=data;
-                      //para mostrar el numero de elementos encontrados en contador
+               .then(function(respuesta)
+                   {
+                       var data =respuesta.data;  
+                       //Mostrar items
+                       $scope.items=data;
+                     //para mostrar el numero de elementos encontrados en contador
                        $scope.resultado=data.length;
                     });
            
@@ -69,6 +99,10 @@ app.controller('ng-app-controller-buscador',
      
  
     };  
+    
+    /**
+     * FIN FUNCION BORRAR
+     */
     
   /**
    * funcion que vamos a usar para comprobar si variable valor es un string o un numero.

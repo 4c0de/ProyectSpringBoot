@@ -20,23 +20,33 @@
             <th>Categoría</th>
             <th>Descripción</th>  
             <th>Imagen</th>
+            <th>Marcar</th>
             <th>Opciones</th>
                 
         </tr> 
      
         <tr id="campos" ng-repeat="element in items">
-            <td ng-bind-html="element.nombre"></td>
+            <td  ng-bind-html="element.nombre"></td>
             <td ng-bind-html="element.categoria"></td>
             <td ng-bind-html="element.descripcion"></td>
             <td>
                 <img class="zoom" id="img" ng-src="{{element.url}}"/>    
             </td>
             <td>
+              <div class="col-md-5">
+                <form> 
+  					<input type="checkbox" value={{element.id}} name="checked"></input>
+  		        </form>			
+			  </div>
+			</td>  
+            <td>
+  	                
                 <div class="btn-toolbar pagination-center" >
                         <button ng-click="add()"  class="btn-xs btn btn-info btn-block">Añadir</button>
                         <button ng-click="editar(element.id)"  class="btn-xs btn btn-warning btn-block">Editar</button>
-                        <button ng-click="borrar(element.id)"  class="btn-xs btn btn-danger btn-block">Borrar</button>
+                        <button ng-click="borrar()"  class="btn-xs btn btn-danger btn-block">Borrar</button>
                 </div>
+               
             </td>
              
         

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.springboot.app.persistence.models.ItemModel;
 import com.springboot.app.persistence.models.PesoItems;
+import com.springboot.app.utils.UtilStr;
 
 @Repository
 public class ItemMapperImpl implements ItemMapper
@@ -80,7 +81,7 @@ public class ItemMapperImpl implements ItemMapper
     }
 
     @Override
-    public void  borrar(ItemModel objeto) throws Exception {
+    public int  borrar(ItemModel objeto) throws Exception {
          
 
 
@@ -94,13 +95,13 @@ public class ItemMapperImpl implements ItemMapper
    
     
  
-    JdbcTemplate.update(sql);
+    return JdbcTemplate.update(sql);
  
 
     }
     
     @Override
-    public void  insertar(ItemModel objeto) throws Exception {
+    public int  insertar(ItemModel objeto) throws Exception {
          
 
     /**sentencia para insertar  elementos  en la bbdd
@@ -108,22 +109,29 @@ public class ItemMapperImpl implements ItemMapper
 
       String sql = "INSERT INTO items  VALUES (default,'"+objeto.getNombre()+"','"+objeto.getDescripcion()+"','"+objeto.getUrl()+"','"+objeto.getCategoria()+"')";
     
-      JdbcTemplate.update(sql);
+      return JdbcTemplate.update(sql);
  
 
     }
 
 	@Override
-	public List<ItemModel> editar(ItemModel objeto) throws Exception {
+	public int editar(ItemModel objeto) throws Exception {
 		
-		   String sql = "SELECT * FROM items where id = '"+objeto.getId()+"'";
+
 	    
-		 
-		
-		    
-		    return JdbcTemplate.query(sql, new BeanPropertyRowMapper(ItemModel.class));
+		String sql =" UPDATE items     " +
+	            " SET nombre=     '" + objeto.getNombre() + "'" +
+	            "    ,descripcion='" + objeto.getDescripcion() + "'" +
+	            "    ,url=        '" + objeto.getUrl() + "'" +
+	            " WHERE id=        " + objeto.getId();
+
+	    return JdbcTemplate.update(sql);
 	}
- 
+	
+
+
+
+
     
    
 }

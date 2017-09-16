@@ -14,8 +14,20 @@ public class ItemModel {
     String descripcion;
     String url;
     String categoria;
+    int contadorSql;
+   
 
-    public String getCategoria() {
+
+
+	public int getContadorSql() {
+		return contadorSql;
+	}
+
+	public void setContadorSql(int contadorSql) {
+		this.contadorSql = contadorSql;
+	}
+
+	public String getCategoria() {
         return categoria;
     }
 

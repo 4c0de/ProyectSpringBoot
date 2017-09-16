@@ -4,6 +4,7 @@ package com.springboot.app.controllers;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -74,46 +75,8 @@ public class Item {
     return lista;     
   }
   
+   
   
-   //mapeamos borrar
-   @ResponseBody
-  @RequestMapping(value = "/borrar",
-                  method = RequestMethod.POST,
-                  produces = MediaType.APPLICATION_JSON_VALUE)
-  
-  public void borrar(@RequestBody ItemModel objeto) throws Exception
-  {
-       
-    
-
-    iService.borrar(objeto);     
-  }
-  
-  
-  //mapeamos insertar
-  @ResponseBody
-  @RequestMapping(value = "/insertar",
-                  method = RequestMethod.POST,
-                  produces = MediaType.APPLICATION_JSON_VALUE)
-  
-  public void insertar(@RequestBody ItemModel objeto) throws Exception
-  {
-
-    iService.insertar(objeto);     
-  }
-  
-  
-  //mapeamos editar
-  @ResponseBody
-  @RequestMapping(value = "/editar",
-                  method = RequestMethod.POST,
-                  produces = MediaType.APPLICATION_JSON_VALUE)
-  
-  public List<ItemModel> editar(@RequestBody ItemModel objeto) throws Exception
-  {
-
-    return iService.editar(objeto);     
-  }
 
   
   

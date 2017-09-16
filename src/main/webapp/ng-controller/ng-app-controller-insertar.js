@@ -15,10 +15,7 @@
                       })
                     .then(function ()
                      {
-                         $scope.nombre = "";
-                         $scope.categoria = "";
-                         $scope.descripcion = "";
-                         $scope.url = "";        
+                             
                         
                      }); 
      

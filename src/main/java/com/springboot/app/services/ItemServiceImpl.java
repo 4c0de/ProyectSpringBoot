@@ -74,25 +74,6 @@ public class ItemServiceImpl implements ItemService {
     return "<span class=\"marcado\">" + str + "</span>";
   }
 
-    @Override
-    public void borrar(ItemModel objeto) throws Exception {
-     iMapper.borrar(objeto);
-    }
-
-
-    @Override
-    public void insertar(ItemModel objeto) throws Exception {
-      iMapper.insertar(objeto);
-    }
-
-
-	@Override
-	public List<ItemModel> editar(ItemModel objeto) throws Exception {
-		
-		return iMapper.editar(objeto);
-	}
-
+ 
 
 }
-
-
