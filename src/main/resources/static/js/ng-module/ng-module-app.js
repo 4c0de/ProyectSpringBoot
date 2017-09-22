@@ -1,4 +1,5 @@
 //inicializamos modulo app
+'use strict';
 var app = angular.module('app', ['ngRoute','ngSanitize']);
 
 //ngRoute encargado de las redirecciones.
@@ -32,13 +33,19 @@ app.config(['$routeProvider', '$locationProvider',
     })
     .when('/insertar',
     {
-      templateUrl: GBL_COFG.urlTemplate('insertar.html'),
+      //templateUrl: GBL_COFG.urlTemplate('buscador.html'),
       controller: 'ng-app-controller-insertar'
     })
     .when('/editar',
     {
       templateUrl: GBL_COFG.urlTemplate('insertar.html'),
       controller: 'ng-app-controller-editar'
+     
+    })
+    .when('/editbbdd',
+    {
+      templateUrl: GBL_COFG.urlTemplate('editbbdd.html'),
+      controller: 'ng-app-controller-editbbdd'
      
     })
     .when('/kirby',
@@ -80,4 +87,34 @@ app.directive('apploading',
   }]);
 
 
+/**
+ *Directiva para editar el valor de las tablas en el buscador. 
+ */
+
+app.directive('editableTd', [function() {
+	  return {
+	    restrict: 'A',
+	    link: function(scope, element, attrs) {    
+	      element.attr('contenteditable', 'true');
+	     
+
+	      element.bind('blur keyup change', function() {
+	        scope.items[attrs.row][attrs.field] = element.text();
+	        console.log(scope.items[attrs.row]);
+	        scope.$digest(); 
+	        
+	      });
+	      
+	      element.bind('click', function() {
+	    
+	       document.execCommand('click', false, null);
+	       
+	  
+	      });
+	  
+	     
+	    }
+	  };
+	
+	}]);
 

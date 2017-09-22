@@ -26,8 +26,18 @@
         $timeout(function ()
         {
           $scope.testOk = false;
-        }, 5000);
+        }, 7000);
       });
+    };
+    
+    $scope.select = function(seleccion)
+    {
+       console.log(seleccion);
+       utilFactory.setbbdd(seleccion);
+       console.log(utilFactory.getbbdd());
+     
+    
+ 
     };
 
 

@@ -31,10 +31,7 @@
                     descripcion:$scope.descripcion,
                     url:$scope.url
                   })
-                .then(function ()
-                 {
-                	 $location.path("/listado");
-                 }); 
+         
        
     }; 	  
 	   

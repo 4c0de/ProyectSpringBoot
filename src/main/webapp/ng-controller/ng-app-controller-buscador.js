@@ -10,39 +10,151 @@ app.controller('ng-app-controller-buscador',
       }
     };
     
-   
+    /*
+     * Funcion  marcar check  cuando click en campos formulario.
+     */
+    $scope.marcar = function(x) {
+
+    	  var check=(document.querySelectorAll(".marcado"));
+    	  console.log(check[x].checked);
+    	  if (check[x].checked===true)
+    	  {    		  
+    	     check[x].checked=false;
+    	    
+    	  }else{
+    	   check[x].checked=true;
     
-    //funcion  para que salga el listado completo de los item al acceder al buscador.
+    	  } 
+    	};
+    
+    
+    /*
+     * FUNCION LISTADO COMPLETO ITEM AL ACCEDER AL BUSCADOR
+     */
     (function()
     {
+    	
         $http.post('listado',{})
         .then(function(respuesta)
             {
+        	  //Almacenamos la respuesta en data.
               var data =respuesta.data;  
               //Mostrar items
               $scope.items=data;
               
-          //para mostrar el numero de elementos encontrados en contador
+          //Mostrar el numero de elementos encontrados en contador
           $scope.resultado=data.length;
             });
     })();
     
-     //funcion añadir  elementos
-    $scope.add = function()
+
+    
+    
+  /*
+   * FUNCION AÑADIR ELEMENTOS
+   */
+    $scope.add = function(items)
     {
-      $location.path("/insertar");
+       
+       utilFactory.setAdd(1);
+     
+       
+      //$location.path("/insertar");
+    	  $scope.items.push({
+    	      nombre: '',
+    	      categoria: '',
+    	      descripcion: '',
+    	      imagen:''
+    	      	    
+    	    });
+   
  
     };
     
-    //funcion para editar elementos
-    $scope.editar = function(id)
-    {
     
-      utilFactory.setId(id);
+    $scope.saveadd = function(items)
+    {
+     var enviar=[]; 	
+ 
+     longitud=utilFactory.getAdd();
+     console.log(longitud);
+  
+     
+     
+     console.log(longitud);
+     
+     for (var i = longitud; i < items.length; i++)
+		{	  			
+		 
+		  enviar.push(items[longitud]);
+		 
+		}
+     
+ 	  for (var i in enviar)
+		{	  			
+		  console.log(enviar[i]);
+		}	
       
-      $location.path("/editar");
+    
  
     };
+    
+  /*
+   *FUNCION EDITAR ELEMENTOS.
+   *Recibe como parametro items de ng-repeat
+   * 
+   */
+  
+    $scope.guardar = function(items)
+    {
+    
+//      utilFactory.setId(id);
+//      $location.path("/editar");
+    	
+    	//creacion del array 	 
+        var enviar=[];
+        var forms = document.forms;
+       	console.log(items);
+        //recorrer los elementos del formulario
+        for (var i = 0; i < forms.length; i++)
+        {
+      	
+      	   //Si elemento checked es marcado se añade al array los item.        	
+            if (forms[i].checked.checked)
+			{
+            	
+	  			console.log("true");
+	  			
+	  			for (var i in items)
+	  			{	  			
+	  			  enviar.push(items[i]);
+	  			}	
+			 }	
+  			
+  			
+  	    }
+         //peticion post y envio de array 
+         $http.post('editar',enviar)
+         .then(function ()
+          {
+            //cuando editamos, para realizar una nueva petición post y mostrar la lista actualizada.  
+            $http.post('listado',{})
+                 .then(function(respuesta)
+                     {
+                         var data =respuesta.data;  
+                         //Mostrar items
+                         $scope.items=data;
+                       //para mostrar el numero de elementos encontrados en contador
+                         $scope.resultado=data.length;
+                     
+                      });
+             
+          }); 
+       
+   
+      };   	
+ 
+  
     
     
     
@@ -67,16 +179,13 @@ app.controller('ng-app-controller-buscador',
     	  */
 		if (forms[i].checked.checked)
 			{
-			console.log("true");
-			//for (var i in items){
-				//console.log(items[i].id);
-			enviar.push({
-			id:forms[i].checked.value
-		    	
-			//}
+				console.log("true");
 				
-		});
-		console.log(forms[i].checked.value);
+				enviar.push({					
+				    id:forms[i].checked.value				
+				});
+				
+				console.log(forms[i].checked.value);
 			
 			}
 	  }
@@ -105,10 +214,10 @@ app.controller('ng-app-controller-buscador',
      */
     
   /**
-   * funcion que vamos a usar para comprobar si variable valor es un string o un numero.
+   * funcion para comprobar si variable valor es un string o un numero.
    * 
-   * @param {type} param---->Es igual a var valor---->osease campo de busqueda en el input html del  buscador.
-   * @returns {String}---->Lo hemos utilizado para en $htttp.post mande a un controlador u otro.
+   * @param {type} param---->Es igual a var valor---->Campo de busqueda en el input html del  buscador.
+   * @returns {String}---->Utilizado para en $htttp.post mande a un controlador u otro.
    */
   
     function isPeso(param)
@@ -139,21 +248,22 @@ app.controller('ng-app-controller-buscador',
         })
         .then(function (respuesta)
         {
-          var data = respuesta.data;
-          
-          //para mostrar el numero de elementos encontrados 
-          $scope.resultado=data.length;
-          //mostramos longitud por consola
-          console.log(JSON.stringify(data.length));
-          //mostrar items
-          $scope.items = data;
-          
-           //ponemos a blanco el contador numerico
-           colorContador.style.color="#FFFFFF";
-          //Si no encontrado ponemos el contador numerico a rojo
-          if (data.length===0){
-              colorContador.style.color="#FF0000";
-          }
+	          var data = respuesta.data;
+	          
+	          //Mostrar el numero de elementos encontrados 
+	          $scope.resultado=data.length;
+	          //mostrar longitud por consola
+	          console.log(JSON.stringify(data.length));
+	          //mostrar items
+	          $scope.items = data;
+	          
+	           //Color blanco el contador numerico
+	           colorContador.style.color="#FFFFFF";
+	           
+	          //Si no encontrado--> contador numerico a rojo
+	          if (data.length===0){
+	              colorContador.style.color="#FF0000";
+	          }
              
          
         });

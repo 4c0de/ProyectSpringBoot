@@ -12,48 +12,47 @@
     
 </div>
 
-<div class="container-fluid">	
-    <table id="tabla"  class="table table-hover">
+
+<div class="container-fluid">
+	<div class="botones">
+             <button ng-click="add(items)"  class="btn btn-primary btn-info">Añadir</button>
+              <button ng-click="saveadd(items)"  class="btn btn-primary btn-info">Guardar</button>
+             <button ng-click="guardar(items)"  class="btn btn-primary btn-warning">Editar-Salvar Cambios</button>
+             <button ng-click="borrar()"  class="btn btn-primary btn btn-danger">Borrar</button>
+	</div></br>	
+    <table id="tabla"  class="table table-hover" >
 
         <tr id="nombres">
             <th>Nombre</th> 
             <th>Categoría</th>
             <th>Descripción</th>  
             <th>Imagen</th>
-            <th>Marcar</th>
-            <th>Opciones</th>
+            <th></th>
+            
                 
         </tr> 
      
-        <tr id="campos" ng-repeat="element in items">
-            <td  ng-bind-html="element.nombre"></td>
-            <td ng-bind-html="element.categoria"></td>
-            <td ng-bind-html="element.descripcion"></td>
+        <tr id="campos" ng-repeat="element in items"  ng-click="marcar($index)">
+          
+            <td  editable-td row="{{$index}}"name="nombre" ng-model="nombre"  field="nombre" ng-bind-html="element.nombre"></td>
+            <td  editable-td row="{{$index}}" field="categoria" ng-bind-html="element.categoria">></td>
+            <td  editable-td row="{{$index}}" field="descripcion" ng-bind-html="element.descripcion"></td>
+       
             <td>
-                <img class="zoom" id="img" ng-src="{{element.url}}"/>    
-            </td>
+                <img class="zoom" id="img" ng-src="{{element.url}}"/> 
+            </td>   
+            
             <td>
               <div class="col-md-5">
-                <form> 
-  					<input type="checkbox" value={{element.id}} name="checked"></input>
-  		        </form>			
+                 <form>
+  					<input  type="checkbox" class="marcado" value={{element.id}} ng-model="checked" name="checked" disabled readonly></input>
+  					
+  		        </form>	
 			  </div>
 			</td>  
-            <td>
-  	                
-                <div class="btn-toolbar pagination-center" >
-                        <button ng-click="add()"  class="btn-xs btn btn-info btn-block">Añadir</button>
-                        <button ng-click="editar(element.id)"  class="btn-xs btn btn-warning btn-block">Editar</button>
-                        <button ng-click="borrar()"  class="btn-xs btn btn-danger btn-block">Borrar</button>
-                </div>
-               
-            </td>
-             
-        
-          
+
     
         </tr>
     </table>
 </div>   
-    
 
