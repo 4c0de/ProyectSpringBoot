@@ -10,24 +10,7 @@ app.controller('ng-app-controller-buscador',
       }
     };
     
-    /*
-     * Funcion  marcar check  cuando click en campos formulario.
-     */
-    $scope.marcar = function(x) {
 
-    	  var check=(document.querySelectorAll(".marcado"));
-    	  console.log(check[x].checked);
-    	  if (check[x].checked===true)
-    	  {    		  
-    	     check[x].checked=false;
-    	    
-    	  }else{
-    	   check[x].checked=true;
-    
-    	  } 
-    	};
-    
-    
     /*
      * FUNCION LISTADO COMPLETO ITEM AL ACCEDER AL BUSCADOR
      */
@@ -53,13 +36,10 @@ app.controller('ng-app-controller-buscador',
   /*
    * FUNCION AÑADIR ELEMENTOS
    */
-    $scope.add = function(items)
+    $scope.add = function()
     {
-       
-       utilFactory.setAdd(1);
-     
-       
-      //$location.path("/insertar");
+    	var longitud=utilFactory.setAdd(0);
+    	longitud=utilFactory.setAdd(utilFactory.getAdd()+1)
     	  $scope.items.push({
     	      nombre: '',
     	      categoria: '',
@@ -71,33 +51,53 @@ app.controller('ng-app-controller-buscador',
  
     };
     
-    
+   //FUNCION PARA GUARDAR LAS TABLAS INSERTADAS. 
     $scope.saveadd = function(items)
     {
-     var enviar=[]; 	
- 
-     longitud=utilFactory.getAdd();
-     console.log(longitud);
-  
+     var enviar=[];
+     var forms = document.forms;
+     var longitud=utilFactory.getAdd();
+     console.log(longitud); 
      
-     
-     console.log(longitud);
-     
-     for (var i = longitud; i < items.length; i++)
-		{	  			
+
+//     
+   for (var i =(items.length-longitud); i < items.length+1; i++)
+	{	  			
 		 
-		  enviar.push(items[longitud]);
-		 
-		}
+	   if (forms[i].checked.checked)
+		{
+       	
+ 			console.log("true");
+ 			
+ 			for (var i in items)
+ 			{
+ 		      
+ 			  enviar.push(items[i]);
+ 			}	
+		 }
+	   //peticion post y envio de array 
+       $http.post('insertar',enviar)
+       .then(function ()
+        {
+          //cuando editamos, para realizar una nueva petición post y mostrar la lista actualizada.  
+          $http.post('listado',{})
+               .then(function(respuesta)
+                   {
+                       var data =respuesta.data;  
+                       //Mostrar items
+                       $scope.items=data;
+                     //para mostrar el numero de elementos encontrados en contador
+                       $scope.resultado=data.length;
+                   
+                    });
+           
+        }); 
      
- 	  for (var i in enviar)
-		{	  			
-		  console.log(enviar[i]);
-		}	
-      
-    
  
-    };
+    };   	
+    };  
+ 
+
     
   /*
    *FUNCION EDITAR ELEMENTOS.
@@ -126,7 +126,8 @@ app.controller('ng-app-controller-buscador',
 	  			console.log("true");
 	  			
 	  			for (var i in items)
-	  			{	  			
+	  			{
+	  		      
 	  			  enviar.push(items[i]);
 	  			}	
 			 }	
@@ -173,6 +174,7 @@ app.controller('ng-app-controller-buscador',
       //recorrer los elementos del formulario
       for (var i = 0; i < forms.length; i++)
       {
+    	  
     	 /*
     	  * Si elemento checked es marcado se añade al array el valor del input.
     	  * En este caso es el id. 

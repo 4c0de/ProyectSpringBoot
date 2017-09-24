@@ -1,0 +1,21 @@
+ <div id="editbbdd">
+  <label for="sel1">Elige Base de datos:</label>
+  <select ng-model="seleccion"  class="form-control" id="sel1"  ng-options="x.table  for x in bbdd">
+  </select>
+   <button ng-click="select(seleccion.table)"  class="btn btn-primary btn-info">Elegir</button>
+
+</div>
+<div class="container-fluid">
+    <table id="tabla" class="table table-hover" >
+
+        <tr id="nombres" ng-repeat="element in items|limitTo:1">
+                  <th ng-repeat="(key,value) in element">{{key}}</th>
+             
+        </tr> 
+         <tr ng-repeat="element in items" >
+          
+            <td ng-repeat="(key, value) in element">{{value}}</td>
+         
+        </tr>
+    </table>
+</div>    

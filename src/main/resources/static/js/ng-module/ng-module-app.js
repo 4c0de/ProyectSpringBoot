@@ -92,24 +92,36 @@ app.directive('apploading',
  */
 
 app.directive('editableTd', [function() {
+	
 	  return {
 	    restrict: 'A',
 	    link: function(scope, element, attrs) {    
 	      element.attr('contenteditable', 'true');
-	     
-
-	      element.bind('blur keyup change', function() {
+	
+	      element.bind('blur click change', function() {
 	        scope.items[attrs.row][attrs.field] = element.text();
-	        console.log(scope.items[attrs.row]);
-	        scope.$digest(); 
+	        scope.$digest();
+	     
 	        
 	      });
+	     
+	      element.bind('blur keyup change', function() {
+	    	  
+	    		var check=(document.querySelectorAll(".marcado"));		     
+	        	var Row = document.querySelector("#campos");
+
+		      if (scope.items[attrs.row][attrs.field])
+		    	  {
+		      
+		    	  	check[attrs.row].checked=true;
+		    	  	scope.$digest(); 
+		    	  }
+		      });
 	      
-	      element.bind('click', function() {
-	    
+	      element.bind('click', function(scope, element, attrs) {
+
 	       document.execCommand('click', false, null);
 	       
-	  
 	      });
 	  
 	     
