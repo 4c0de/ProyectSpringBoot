@@ -1,3 +1,3 @@
 # Spring Boot and Angular JS | STS & NETBEANS 
 
-Este contenido esta destinado para uso didáctico. 
+Ejemplo proyecto Web con Spring Boot y Angular JS
